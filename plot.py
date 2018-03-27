@@ -52,8 +52,14 @@ nsb_filter = np.interp(
     fp=veritas_nsb_filter_2015[:, 1],)
 
 plt.figure()
-lbenn, = plt.plot(wavelength, nsb_diff_la_palma_benn, label='night-sky-background, La Palma, Benn')
-lhoff, = plt.plot(wavelength, nsb_diff_la_palma_hoffmann, label='night-sky-background, La Palma, Hoffmann')
+lbenn, = plt.plot(
+    wavelength,
+    nsb_diff_la_palma_benn,
+    label='night-sky-background, La Palma, Benn')
+lhoff, = plt.plot(
+    wavelength,
+    nsb_diff_la_palma_hoffmann,
+    label='night-sky-background, La Palma, Hoffmann')
 plt.semilogy()
 plt.ylabel('differential flux/(m^-2 sr^-1 m^-1)')
 plt.xlabel('wavelength/m')
@@ -69,9 +75,13 @@ plt.legend(handles=[lsipm, lpmt])
 plt.savefig('./readme/pde.png')
 
 plt.figure()
-lcer, = plt.plot(wavelength, cherenkov_la_palma,
+lcer, = plt.plot(
+    wavelength,
+    cherenkov_la_palma,
 	label='3TeV gamma, Cherenkov La Palma, 2200m asl, Zd: 0deg')
-lcer70, = plt.plot(wavelength, cherenkov_la_palma_zd_70deg,
+lcer70, = plt.plot(
+    wavelength,
+    cherenkov_la_palma_zd_70deg,
 	label='3TeV gamma, Cherenkov La Palma, 2200m asl, Zd: 70deg')
 plt.ylabel('relative/1')
 plt.xlabel('wavelength/m')
@@ -79,8 +89,48 @@ plt.legend(handles=[lcer, lcer70])
 plt.savefig('./readme/cherenkov.png')
 
 plt.figure()
-lfilter, = plt.plot(wavelength, nsb_filter, label='VERITAS night-sky-background filter')
+lfilter, = plt.plot(
+    wavelength,
+    nsb_filter,
+    label='VERITAS night-sky-background filter')
 plt.ylabel('transmission/1')
 plt.xlabel('wavelength/m')
 plt.legend(handles=[lfilter])
 plt.savefig('./readme/transmission.png')
+plt.close('all')
+
+from cta_mirrors import *
+
+plt.figure(figsize=(16,9))
+l0, = plt.plot(
+    mst_dielectric[:, 0],
+    mst_dielectric[:, 1],
+    label='CTA MST dielectric')
+l1, = plt.plot(
+    mst_Al_SiO2_HfO2_SiO2_before[:, 0],
+    mst_Al_SiO2_HfO2_SiO2_before[:, 1],
+    label='CTA MST Al SiO2 HfO2 before')
+l2, = plt.plot(
+    mst_Al_SiO2_before[:, 0],
+    mst_Al_SiO2_before[:, 1],
+    label='CTA MST Al SiO2 before')
+l3, = plt.plot(
+    astri_SiO2_mixed_multilayer_yellow[:, 0],
+    astri_SiO2_mixed_multilayer_yellow[:, 1],
+    label='CTA ASTRI SiO2 mixed multi. yellow')
+l4, = plt.plot(
+    astri_SiO2_TiO2_mulitlayer[:, 0],
+    astri_SiO2_TiO2_mulitlayer[:, 1],
+    label='CTA ASTRI SiO2 TiO2 multi.')
+l5, = plt.plot(
+    astri_SiO2_mixed_multilayer_orange[:, 0],
+    astri_SiO2_mixed_multilayer_orange[:, 1],
+    label='CTA ASTRI SiO2 mixed multi. orange')
+l6, = plt.plot(
+    astri_Al_SiO2[:, 0],
+    astri_Al_SiO2[:, 1],
+    label='CTA ASTRI Al SiO2')
+plt.ylabel('reflectivity/1')
+plt.xlabel('wavelength/m')
+plt.legend(handles=[l0, l1, l2, l3, l4, l5, l6])
+plt.savefig('./readme/cta_mirrors.png')
