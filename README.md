@@ -13,4 +13,4 @@ We collect the efficiency of sensors to detect photons.
 We collect the transmission or reflectivity of optical components.
 ![img](readme/transmission.png)
 
-![img](cta_mirrors.png)
+![img](readme/cta_mirrors.png)
