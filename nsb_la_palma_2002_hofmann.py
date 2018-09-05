@@ -16,7 +16,7 @@ Figure 8
 """
 
 # wavelength [m], nsb flux [1/(s m^2 sr m)]
-la_palma_2002_hoffmann = np.array([
+la_palma_2002_hofmann = np.array([
     [362.5e-9, 3.8e18],
     [410.0e-9, 4.3e18],
     [440.0e-9, 5.2e18],
