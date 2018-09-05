@@ -6,14 +6,14 @@ lbenn, = plt.plot(
     es.wavelength,
     es.nsb_diff_la_palma_benn,
     label='night-sky-background, La Palma, Benn')
-lhoff, = plt.plot(
+lhof, = plt.plot(
     es.wavelength,
-    es.nsb_diff_la_palma_2002_hoffmann,
-    label='night-sky-background, La Palma, Hoffmann')
+    es.nsb_diff_la_palma_2002_hofmann,
+    label='night-sky-background, La Palma, Hofmann')
 plt.semilogy()
 plt.ylabel('differential flux/(m^-2 sr^-1 m^-1)')
 plt.xlabel('wavelength/m')
-plt.legend(handles=[lbenn, lhoff])
+plt.legend(handles=[lbenn, lhof])
 plt.savefig('./readme/nsb.png')
 
 plt.figure()
