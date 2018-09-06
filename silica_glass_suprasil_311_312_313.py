@@ -9,7 +9,7 @@ import numpy as np
 }
 """
 
-heraeus_silica_glass_suprasil_311_312_313 = np.array([
+heraeus_silica_glass_suprasil_311_312_313_transmission = np.array([
 
 [1.5678221055181248e-7, 0.006107622228108456],
 [1.5924597115791325e-7, 0.01855463301303173],
