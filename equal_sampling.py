@@ -2,10 +2,11 @@ import cherenkov_la_palma
 import cherenkov_cta_chile
 import hamamatsu_r11920_100_05
 import hamamatsu_s10362_33_050c
-import nsb_la_palma_2002_hoffmann
+import nsb_la_palma_2002_hofmann
 import nsb_la_palma_2013_benn
 import veritas_nsb_filter_2015
 import cta_mirrors
+import silica_glass_suprasil_311_312_313
 import numpy as np
 
 wavelength = np.linspace(240e-9, 700e-9, 460)
@@ -35,12 +36,12 @@ hamamatsu_r11920_100_05 = np.interp(
     xp=hamamatsu_r11920_100_05.hamamatsu_r11920_100_05[:, 0],
     fp=hamamatsu_r11920_100_05.hamamatsu_r11920_100_05[:, 1],)
 
-nsb_diff_la_palma_2002_hoffmann = np.interp(
+nsb_diff_la_palma_2002_hofmann = np.interp(
     x=wavelength,
-    xp=nsb_la_palma_2002_hoffmann.la_palma_2002_hoffmann[:, 0],
-    fp=nsb_la_palma_2002_hoffmann.la_palma_2002_hoffmann[:, 1],)
-nsb_diff_la_palma_2002_hoffmann[wavelength < 362e-9] = np.nan
-nsb_diff_la_palma_2002_hoffmann[wavelength > 550e-9] = np.nan
+    xp=nsb_la_palma_2002_hofmann.la_palma_2002_hofmann[:, 0],
+    fp=nsb_la_palma_2002_hofmann.la_palma_2002_hofmann[:, 1],)
+nsb_diff_la_palma_2002_hofmann[wavelength < 362e-9] = np.nan
+nsb_diff_la_palma_2002_hofmann[wavelength > 550e-9] = np.nan
 
 nsb_diff_la_palma_benn = np.interp(
     x=wavelength,
@@ -86,3 +87,18 @@ astri_Al_SiO2 = np.interp(
     x=wavelength,
     xp=cta_mirrors.astri_Al_SiO2[:, 0],
     fp=cta_mirrors.astri_Al_SiO2[:, 1],)
+
+suprasil_311_312_313_refraction = np.interp(
+    x=wavelength,
+    xp=silica_glass_suprasil_311_312_313.suprasil_refractive_index[:, 0],
+    fp=silica_glass_suprasil_311_312_313.suprasil_refractive_index[:, 1],)
+
+suprasil_311_312_313_transmission_incl_Fresnel = np.interp(
+    x=wavelength,
+    xp=silica_glass_suprasil_311_312_313.heraeus_silica_glass_suprasil_311_312_313_transmission[:, 0],
+    fp=silica_glass_suprasil_311_312_313.heraeus_silica_glass_suprasil_311_312_313_transmission[:, 1],)
+
+suprasil_311_312_313_transmission_only_Fresnel = np.interp(
+    x=wavelength,
+    xp=silica_glass_suprasil_311_312_313.fresnell_reflection_losses[:, 0],
+    fp=silica_glass_suprasil_311_312_313.fresnell_reflection_losses[:, 1],)
