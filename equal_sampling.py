@@ -60,20 +60,35 @@ veritas_nsb_filter_2015 = np.interp(
     xp=veritas_nsb_filter_2015.veritas_nsb_filter_2015[:, 0],
     fp=veritas_nsb_filter_2015.veritas_nsb_filter_2015[:, 1],)
 
-mst_dielectric = np.interp(
+mst_dielectric_before = np.interp(
     x=wavelength,
-    xp=cta_mirrors.mst_dielectric[:, 0],
-    fp=cta_mirrors.mst_dielectric[:, 1],)
+    xp=cta_mirrors.mst_dielectric_before[:, 0],
+    fp=cta_mirrors.mst_dielectric_before[:, 1],)
+
+mst_dielectric_after = np.interp(
+    x=wavelength,
+    xp=cta_mirrors.mst_dielectric_after[:, 0],
+    fp=cta_mirrors.mst_dielectric_after[:, 1],)
 
 mst_Al_SiO2_before = np.interp(
     x=wavelength,
     xp=cta_mirrors.mst_Al_SiO2_before[:, 0],
     fp=cta_mirrors.mst_Al_SiO2_before[:, 1],)
 
+mst_Al_SiO2_after = np.interp(
+    x=wavelength,
+    xp=cta_mirrors.mst_Al_SiO2_after[:, 0],
+    fp=cta_mirrors.mst_Al_SiO2_after[:, 1],)
+
 mst_Al_SiO2_HfO2_SiO2_before = np.interp(
     x=wavelength,
     xp=cta_mirrors.mst_Al_SiO2_HfO2_SiO2_before[:, 0],
     fp=cta_mirrors.mst_Al_SiO2_HfO2_SiO2_before[:, 1],)
+
+mst_Al_SiO2_HfO2_SiO2_after = np.interp(
+    x=wavelength,
+    xp=cta_mirrors.mst_Al_SiO2_HfO2_SiO2_after[:, 0],
+    fp=cta_mirrors.mst_Al_SiO2_HfO2_SiO2_after[:, 1],)
 
 astri_SiO2_mixed_multilayer_yellow = np.interp(
     x=wavelength,
