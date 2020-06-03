@@ -1,15 +1,17 @@
 import cherenkov_la_palma
 import cherenkov_cta_chile
-import hamamatsu_r11920_100_05
+import hamamatsu_r11920_100_05 as _hamamatsu_r11920_100_05
 import hamamatsu_s10362_33_050c
 import nsb_la_palma_2002_hofmann
 import nsb_la_palma_2013_benn
 import veritas_nsb_filter_2015
 import cta_mirrors
+import cta_windows
+import hess_mirrors
 import silica_glass_suprasil_311_312_313
 import numpy as np
 
-wavelength = np.linspace(240e-9, 700e-9, 460)
+wavelength = np.linspace(200e-9, 700e-9, 501)
 
 cherenkov_histogram_on_ground = np.interp(
     x=wavelength,
@@ -31,10 +33,15 @@ hamamatsu_s10362_33_050c = np.interp(
     xp=hamamatsu_s10362_33_050c.hamamatsu_s10362_33_050c[:, 0],
     fp=hamamatsu_s10362_33_050c.hamamatsu_s10362_33_050c[:, 1],)
 
+hamamatsu_r11920_100_05_sample = np.interp(
+    x=wavelength,
+    xp=_hamamatsu_r11920_100_05.hamamatsu_r11920_100_05_sample[:, 0],
+    fp=_hamamatsu_r11920_100_05.hamamatsu_r11920_100_05_sample[:, 1],)
+
 hamamatsu_r11920_100_05 = np.interp(
     x=wavelength,
-    xp=hamamatsu_r11920_100_05.hamamatsu_r11920_100_05[:, 0],
-    fp=hamamatsu_r11920_100_05.hamamatsu_r11920_100_05[:, 1],)
+    xp=_hamamatsu_r11920_100_05.hamamatsu_r11920_100_05[:, 0],
+    fp=_hamamatsu_r11920_100_05.hamamatsu_r11920_100_05[:, 1],)
 
 nsb_diff_la_palma_2002_hofmann = np.interp(
     x=wavelength,
@@ -87,6 +94,16 @@ astri_Al_SiO2 = np.interp(
     x=wavelength,
     xp=cta_mirrors.astri_Al_SiO2[:, 0],
     fp=cta_mirrors.astri_Al_SiO2[:, 1],)
+
+cta_mst_flash_cam_window_transmission = np.interp(
+    x=wavelength,
+    xp=cta_windows.cta_flash_cam_window_transmisson[:, 0],
+    fp=cta_windows.cta_flash_cam_window_transmisson[:, 1],)
+
+hess_ct5_mirror_degraded = np.interp(
+    x=wavelength,
+    xp=hess_mirrors.hess_ct5_mirror_degraded[:, 0],
+    fp=hess_mirrors.hess_ct5_mirror_degraded[:, 1],)
 
 suprasil_311_312_313_refraction = np.interp(
     x=wavelength,
