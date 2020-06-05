@@ -90,13 +90,7 @@ _veritas_nsb_filter_2015 = np.array([
 _veritas_nsb_filter_2015[:, 0] *= 1e-9
 
 transmission = {
-    "wavelength": {
-        "values": _veritas_nsb_filter_2015[:, 0].tolist(),
-        "unit": "m"
-    },
-    "transmission": {
-        "values": _veritas_nsb_filter_2015[:, 1].tolist(),
-        "unit": "1"
-    },
-    "comment": _archambault2017gamma
+    "wavelength_vs_value": _veritas_nsb_filter_2015,
+    "units": ["m", "1"],
+    "reference": _archambault2017gamma
 }

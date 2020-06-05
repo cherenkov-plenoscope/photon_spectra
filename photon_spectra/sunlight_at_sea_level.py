@@ -312,6 +312,9 @@ _sunlight_differential_flux_at_sea_level = np.array([
     [0.0000024599266849404698, -0.0039005511160827844],
 ])
 
+h = 6.626e-34  # [J s]
+c = 299792458
+
 _sldfasl = _sunlight_differential_flux_at_sea_level
 _sort_wvl = np.argsort(_sldfasl[:, 0])
 _sldfasl = _sldfasl[_sort_wvl]
@@ -320,14 +323,13 @@ _sldfasl[_mask_negative_flux, 1] = 0.
 
 _sldfasl[:, 1] = _sldfasl[:, 1]*1e9  # (nm)$^{-1}$ --> m$^{-1}$
 
+# Watt -> photons s^{-1}
+_photon_energy_J = (h*c)/(_sldfasl[:, 0])
+_flux_per_m2_per_s_per_m = _sldfasl[:, 1]/_photon_energy_J
+_sldfasl[:, 1] = _flux_per_m2_per_s_per_m
+
 differential_flux = {
-    "wavelength": {
-        "values": _sldfasl[:, 0].tolist(),
-        "unit": "m",
-    },
-    "differential_flux": {
-        "values": _sldfasl[:, 1].tolist(),
-        "unit": "W m^{-2} m^{-1}",
-    },
-    "comment": _wikimedia2019solar
+    "wavelength_vs_value": _sldfasl,
+    "units": ["m", "m^{-2} s^{-1} m^{-1}"],
+    "reference": _wikimedia2019solar
 }

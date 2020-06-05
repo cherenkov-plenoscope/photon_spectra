@@ -26,14 +26,8 @@ _la_palma_2002_hofmann = np.array([
     [550.0e-9, 7.3e18],
 ])
 
-flux = {
-    "wavelength": {
-        "values": _la_palma_2002_hofmann[:, 0].tolist(),
-        "unit": "m"
-    },
-    "differential_flux": {
-        "values": _la_palma_2002_hofmann[:, 1].tolist(),
-        "unit": "m^{-2} sr^{-1} s^{-1} m^{-1}"
-    },
-    "comment": _preuss2002study
+differential_flux = {
+    "wavelength_vs_value": _la_palma_2002_hofmann,
+    "units": ["m", "m^{-2} sr^{-1} s^{-1} m^{-1}"],
+    "reference": _preuss2002study,
 }

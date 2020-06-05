@@ -942,17 +942,11 @@ _cer[70] = np.array([
 intensity = {}
 for key in _cer:
     intensity[key] = {
-        "wavelength": {
-            "values": _cer[key][:, 0].tolist(),
-            "unit": "m"
-        },
-        "intensity": {
-            "values": _cer[key][:, 1].tolist(),
-            "unit": "1"
-        },
-        "comment": (
+        "wavelength_vs_value": _cer[key],
+        "units": ["m", "1"],
+        "reference": (
             "{zenith_" + str(key) + "deg}" +
-            _corsika2018cherenkov.format(float(key))
+            _corsika2018cherenkov.format(thetap=float(key))
         )
     }
 

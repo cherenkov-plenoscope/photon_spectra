@@ -30,7 +30,7 @@ _pareschi2013status_arxive = "{https://arxiv.org/abs/1310.1713}"
 
 _m = {}
 
-_m['mst_dielectric_before'] = np.array([
+_m['cta_mst_dielectric_before'] = np.array([
     [2.0179153426370204e-7, 0.20889538642774175],
     [2.0426604742418626e-7, 0.18289823384432535],
     [2.0734196374340392e-7, 0.16028901853154776],
@@ -158,7 +158,7 @@ _m['mst_dielectric_before'] = np.array([
     [7.011490774839957e-7, 0.12139959332441486],
 ])
 
-_m['mst_dielectric_after'] = np.array([
+_m['cta_mst_dielectric_after'] = np.array([
     [2.553e-07, 5.153e-01],
     [2.558e-07, 5.267e-01],
     [2.562e-07, 5.372e-01],
@@ -357,7 +357,7 @@ _m['mst_dielectric_after'] = np.array([
     [6.426e-07, 5.158e-01]
 ])
 
-_m['mst_Al_SiO2_HfO2_SiO2_before'] = np.array([
+_m['cta_mst_Al_SiO2_HfO2_SiO2_before'] = np.array([
     [2.0051982742068466e-7, 0.2416684135524365],
     [2.0167981698298805e-7, 0.2730211055575693],
     [2.0273842434341e-7, 0.3625671814426339],
@@ -442,7 +442,7 @@ _m['mst_Al_SiO2_HfO2_SiO2_before'] = np.array([
     [6.975398710970172e-7, 0.7987106579154548],
 ])
 
-_m['mst_Al_SiO2_HfO2_SiO2_after'] = np.array([
+_m['cta_mst_Al_SiO2_HfO2_SiO2_after'] = np.array([
     [2.0051e-7, 0.2416684],
     [2.0167e-7, 0.2730211],
     [2.0273e-7, 0.3625671],
@@ -628,7 +628,7 @@ _m['mst_Al_SiO2_HfO2_SiO2_after'] = np.array([
     [7.000e-07, 7.965e-01]
 ])
 
-_m['mst_Al_SiO2_before'] = np.array([
+_m['cta_mst_Al_SiO2_before'] = np.array([
     [2.020509939570607e-7, 0.47827754290023605],
     [2.0492355529658222e-7, 0.5026754158563038],
     [2.1030074916918577e-7, 0.5535062864345561],
@@ -705,7 +705,7 @@ _m['mst_Al_SiO2_before'] = np.array([
     [6.992100198363608e-7, 0.8858253326831652],
 ])
 
-_m['mst_Al_SiO2_after'] = np.array([
+_m['cta_mst_Al_SiO2_after'] = np.array([
     [2.020e-07, 4.780e-01],
     [2.121e-07, 5.167e-01],
     [2.140e-07, 5.283e-01],
@@ -841,7 +841,7 @@ _m['mst_Al_SiO2_after'] = np.array([
     [6.991e-07, 8.615e-01]
 ])
 
-_m['astri_SiO2_mixed_multilayer_yellow'] = np.array([
+_m['cta_astri_SiO2_mixed_multilayer_yellow'] = np.array([
     [2.537413130963693e-7, 0.24217160548429906],
     [2.599602643442879e-7, 0.2226315789473684],
     [2.64808135440307e-7, 0.19255933952528392],
@@ -940,7 +940,7 @@ _m['astri_SiO2_mixed_multilayer_yellow'] = np.array([
     [8.977594615326683e-7, 0.08342621259029936],
 ])
 
-_m['astri_SiO2_TiO2_mulitlayer'] = np.array([
+_m['cta_astri_SiO2_TiO2_mulitlayer'] = np.array([
     [2.5372149392441824e-7, 0.26919504643962855],
     [2.6751338126588716e-7, 0.26395665634674925],
     [2.7165235615408805e-7, 0.26046439628482976],
@@ -1108,7 +1108,7 @@ _m['astri_SiO2_TiO2_mulitlayer'] = np.array([
     [8.935800758610431e-7, 0.14201857585139321],
 ])
 
-_m['astri_SiO2_mixed_multilayer_orange'] = np.array([
+_m['cta_astri_SiO2_mixed_multilayer_orange'] = np.array([
     [2.543265884896023e-7, 0.3841486068111455],
     [2.605210706829197e-7, 0.3979721362229103],
     [2.6533923843020693e-7, 0.4084004127966976],
@@ -1298,7 +1298,7 @@ _m['astri_SiO2_mixed_multilayer_orange'] = np.array([
     [8.908862845004829e-7, 0.05500309597523212],
 ])
 
-_m['astri_Al_SiO2'] = np.array([
+_m['cta_astri_Al_SiO2'] = np.array([
     [2.5286312050537696e-7, 0.812920536635707],
     [2.6205835237806544e-7, 0.8085552115583076],
     [2.7033295830443036e-7, 0.8061300309597523],
@@ -1385,15 +1385,9 @@ _m['astri_Al_SiO2'] = np.array([
 reflectivities = {}
 for key in _m:
     reflectivities[key] = {
-        "wavelength": {
-            "values": _m[key][:, 0].tolist(),
-            "unit": "m",
-        },
-        "reflectivity": {
-            "values": _m[key][:, 1].tolist(),
-            "unit": "1",
-        },
-        "comment": (
+        "wavelength_vs_value": _m[key],
+        "units": ["m", "1"],
+        "reference": (
             "{" + key + "}" +
             _pareschi2013status_arxive +
             _pareschi2013status

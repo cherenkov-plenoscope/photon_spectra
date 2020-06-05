@@ -66,13 +66,7 @@ _hamamatsu_s10362_33_050c[:, 1] /= _hamamatsu_s10362_33_050c[:, 1].max()
 _hamamatsu_s10362_33_050c[:, 1] *= _max_pde_according_to_fact
 
 efficiency = {
-    "wavelength": {
-        "values": _hamamatsu_s10362_33_050c[:, 0].tolist(),
-        "unit": "m"
-    },
-    "efficiency": {
-        "values": _hamamatsu_s10362_33_050c[:, 1].tolist(),
-        "unit": "1"
-    },
-    "comment": _hamamatsu2009mppc+_anderhub2013design
+    "wavelength_vs_value": _hamamatsu_s10362_33_050c,
+    "units": ["m", "1"],
+    "reference": _hamamatsu2009mppc+_anderhub2013design
 }

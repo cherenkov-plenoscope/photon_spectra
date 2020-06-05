@@ -141,13 +141,7 @@ _hamamatsu_r11920_100_05 = np.array([
 ])
 
 efficiency = {
-    "wavelength": {
-        "values": _hamamatsu_r11920_100_05[:, 0].tolist(),
-        "unit": "m"
-    },
-    "efficiency": {
-        "values": _hamamatsu_r11920_100_05[:, 1].tolist(),
-        "unit": "1"
-    },
-    "comment": _toyama2013novel+_kalekin2018average
+    "wavelength_vs_value": _hamamatsu_r11920_100_05,
+    "units": ["m", "1"],
+    "reference": _toyama2013novel+_kalekin2018average
 }

@@ -77,14 +77,8 @@ raw[:, 1] /= ((h*c)/raw[:, 0])  # flux [1 / (s m^2 m sr)]
 
 _la_palma_2013_benn = raw
 
-flux = {
-    "wavelength": {
-        "values": _la_palma_2013_benn[:, 0].tolist(),
-        "unit": "m"
-    },
-    "differential_flux": {
-        "values": _la_palma_2013_benn[:, 1].tolist(),
-        "unit": "m^{-2} sr^{-1} s^{-1} m^{-1}"
-    },
-    "comment": _gaug2013night
+differential_flux = {
+    "wavelength_vs_value": _la_palma_2013_benn,
+    "units": ["m", "m^{-2} sr^{-1} s^{-1} m^{-1}"],
+    "reference": _gaug2013night,
 }
