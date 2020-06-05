@@ -1,19 +1,21 @@
 import numpy as np
 
-"""
-@article{archambault2017gamma,
-  title={Gamma-ray observations under bright moonlight with VERITAS},
-  author={Archambault, S and Archer, A and Benbow, W and Bird, R and Bourbeau, E and Bouvier, A and Buchovecky, M and Bugaev, V and Cardenzana, JV and Cerruti, M and others},
-  journal={Astroparticle Physics},
-  volume={91},
-  pages={34--43},
-  year={2017},
-  publisher={Elsevier}
-}
-"""
+_archambault2017gamma = "".join([
+    "@article{archambault2017gamma,"
+    "title={Gamma-ray observations under bright moonlight with VERITAS},"
+    "author={Archambault, S and Archer, A and Benbow, W and Bird, R and "
+    "Bourbeau, E and Bouvier, A and Buchovecky, M and Bugaev, V and "
+    "Cardenzana, JV and Cerruti, M and others},"
+    "journal={Astroparticle Physics},"
+    "volume={91},"
+    "pages={34--43},"
+    "year={2017},"
+    "publisher={Elsevier}"
+    "}"
+])
 
-veritas_nsb_filter_2015 = np.array([
-	# wavelength/m, efficiency/1
+_veritas_nsb_filter_2015 = np.array([
+    # wavelength/m, efficiency/1
     [200, -0.0],
     [251.45091130912675, 0.0],
     [257.3269595854213, 0.0066541199654472916],
@@ -85,4 +87,16 @@ veritas_nsb_filter_2015 = np.array([
     [700.0, 0.0],
 ])
 
-veritas_nsb_filter_2015[:, 0] *= 1e-9
+_veritas_nsb_filter_2015[:, 0] *= 1e-9
+
+transmission = {
+    "wavelength": {
+        "values": _veritas_nsb_filter_2015[:, 0].tolist(),
+        "unit": "m"
+    },
+    "transmission": {
+        "values": _veritas_nsb_filter_2015[:, 1].tolist(),
+        "unit": "1"
+    },
+    "comment": _archambault2017gamma
+}

@@ -1,23 +1,22 @@
 import numpy as np
 
-"""
-Spectrum of blue sky somewhat near the horizon pointing east at around
-3 or 4 pm on a clear day. Spectrum was taken using an Ocean Optics HR2000
-spectrometer [1] with a high-OH solarization-resistant fiber optic
-light guide. this spectrum is NOT BY ANY MEANS IDEAL and was taken from
-inside a laboratory through probably 4 panes of window glass, thus
-completely attenuating virtually all radiation below 400nm also the end of
-the fiber optic was not coupled to any collimating optics thus there may be
-some slight skewing of the spectrum due to diffuse reflections off
-surrounding buildings and trees etc. Because the response of the CCD
-detector in the spectrometer is not linear the spectrum in the infrared
-region is also less than what is actually present in sunlight; the
-blackbody spectrum of sunlight continues much further into the infrared
-than is shown here. This spectrum is not calibrated for intensity.
-"""
+_wikimedia2019blue = "".join([
+    "{https://commons.wikimedia.org/wiki/File:Spectrum_of_blue_sky.svg}"
+    "{Spectrum of blue sky somewhat near the horizon pointing east at around"
+    "3 or 4 pm on a clear day. Spectrum was taken using an Ocean Optics HR2000"
+    "spectrometer [1] with a high-OH solarization-resistant fiber optic"
+    "light guide. this spectrum is NOT BY ANY MEANS IDEAL and was taken from"
+    "inside a laboratory through probably 4 panes of window glass, thus"
+    "completely attenuating virtually all radiation below 400nm also the end "
+    "of the fiber optic was not coupled to any collimating optics thus there "
+    "may be some slight skewing of the spectrum due to diffuse reflections off"
+    "surrounding buildings and trees etc. Because the response of the CCD"
+    "detector in the spectrometer is not linear the spectrum in the infrared"
+    "region is also less than what is actually present in sunlight; the"
+    "blackbody spectrum of sunlight continues much further into the infrared"
+    "than is shown here. This spectrum is not calibrated for intensity.}"
+])
 
-#  wavelength / m
-#  intensity / arbitrary units
 _blue_sky_diffuse_emission = np.array([
     [3.5115567427466235e-7, 125.33143109674893],
     [3.538788257345298e-7, 125.71675331043298],
@@ -478,4 +477,14 @@ _sort_wvl = np.argsort(_bsde[:, 0])
 _bsde = _bsde[_sort_wvl]
 _bsde[:, 1] /= np.max(_bsde[:, 1])
 
-blue_sky_diffuse_emission = _bsde
+emission = {
+    "wavelength": {
+        "values": _bsde[:, 0].tolist(),
+        "unit": "m"
+    },
+    "intensity": {
+        "values": _bsde[:, 1].tolist(),
+        "unit": "arbitrary units"
+    },
+    "comment": _wikimedia2019blue
+}

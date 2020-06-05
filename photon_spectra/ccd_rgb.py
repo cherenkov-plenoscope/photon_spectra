@@ -1,10 +1,10 @@
 import numpy as np
 
-"""
-Sony CCD RGB sensor quantum-efficiency.
-"""
+_sony2019ccd = "{Sony CCD RGB sensor quantum-efficiency.}"
 
-_blue = np.array([
+_ccd = {}
+
+_ccd["ccd_blue"] = np.array([
     [2e-7, 0.0],  # extrapolated
     [3.7018891099466383e-7, 0.005735486401673429],
     [3.769712954605501e-7, 0.02909138455686544],
@@ -90,7 +90,7 @@ _blue = np.array([
     [12e-7, 0.0],  # extrapolated
 ])
 
-_green = np.array([
+_ccd["ccd_green"] = np.array([
     [2e-7, 0.0],  # extrapolated
     [3.5934682198424673e-7, 0.011500610181310877],
     [3.8457198313530626e-7, 0.008535689380354539],
@@ -175,7 +175,7 @@ _green = np.array([
     [12e-7, 0.0],  # extrapolated
 ])
 
-_red = np.array([
+_ccd["ccd_red"] = np.array([
     [2e-7, 0.0],  # extrapolated
     [3.6671814227973774e-7, 0.019197424785813544],
     [3.8971064095024217e-7, 0.017272721989772144],
@@ -241,8 +241,21 @@ _red = np.array([
     [12e-7, 0.0],  # extrapolated
 ])
 
-# wavelength / m
-# quantum efficiency / 1
-ccd_red = _red[np.argsort(_red[:, 0])]
-ccd_green = _green[np.argsort(_green[:, 0])]
-ccd_blue = _blue[np.argsort(_blue[:, 0])]
+for key in _ccd:
+    order = np.argsort(_ccd[key][:, 0])
+    _ccd[key] = _ccd[key][order]
+
+efficiency = {}
+
+for key in _ccd:
+    efficiency[key] = {
+        "wavelength": {
+            "values": _ccd[key][:, 0].tolist(),
+            "unit": "m"
+        },
+        "efficiency": {
+            "values": _ccd[key][:, 1].tolist(),
+            "unit": "1"
+        },
+        "comment": "{" + key + "}" + _sony2019ccd
+    }

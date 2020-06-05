@@ -1,28 +1,36 @@
 import numpy as np
 
-"""
-The mirror-reflectivity of the Cherenkov-Telescope-Array (CTA)
+_pareschi2013status = "".join([
+    "@proceeding{doi: 10.1117/12.2025476,"
+    "author = { G.  Pareschi,T.  Armstrong,H.  Baba,J.  Baehr,A.  "
+    "Bonardi,G.  Bonnoli,P.  Brun,R.  Canestrari,P.  Chadwick,M.  "
+    "Chikawa,P.-H.  Carton,V.  de Souza,J.  Dipold,M.  Doro,D.  "
+    "Durand,M.  Dyrda,A.  Foerster,M.  Garczarczyk,E.  Giro,J.-F.  "
+    "Glicenstein,Y.  Hanabata,M.  Hayashida,M.  Hrabovski,C.  "
+    "Jeanney,M.  Kagaya,H.  Katagiri,L.  Lessio,D.  Mandat,M.  "
+    "Mariotti,C.  Medina,J.  Michalowski,P.  Micolon,D.  Nakajima,J.  "
+    "Niemiec,A.  Nozato,M.  Palatka,M.  Pech,B.  Peyaud,G.  "
+    "Puehlhofer,M.  Rataj,G.  Rodeghiero,G.  Rojas,J.  Rousselle,R.  "
+    "Sakonaka,P.  Schovanek,K.  Seweryn,C.  Schultz,S.  Shu,F.  "
+    "Stinzing,M.  Stodulski,M.  Teshima,P.  Travniczek,C.  van Eldik,V.  "
+    "Vassiliev,L  Wisniewski,A.  Woernlein,T.  Yoshida},"
+    "title = {Status of the technologies for the production of the "
+    "Cherenkov Telescope Array (CTA) mirrors},"
+    "journal = {Proc.SPIE},"
+    "volume = {8861},"
+    "number = {},"
+    "pages = {8861 - 8861 - 19},"
+    "year = {2013},"
+    "doi = {10.1117/12.2025476},"
+    "URL = {https://doi.org/10.1117/12.2025476},"
+    "}"
+])
 
-@proceeding{doi: 10.1117/12.2025476,
-author = { G.  Pareschi,T.  Armstrong,H.  Baba,J.  Bähr,A.  Bonardi,G.  Bonnoli,P.  Brun,R.  Canestrari,P.  Chadwick,M.  Chikawa,P.-H.  Carton,V.  de Souza,J.  Dipold,M.  Doro,D.  Durand,M.  Dyrda,A.  Förster,M.  Garczarczyk,E.  Giro,J.-F.  Glicenstein,Y.  Hanabata,M.  Hayashida,M.  Hrabovski,C.  Jeanney,M.  Kagaya,H.  Katagiri,L.  Lessio,D.  Mandat,M.  Mariotti,C.  Medina,J.  Michalowski,P.  Micolon,D.  Nakajima,J.  Niemiec,A.  Nozato,M.  Palatka,M.  Pech,B.  Peyaud,G.  Pühlhofer,M.  Rataj,G.  Rodeghiero,G.  Rojas,J.  Rousselle,R.  Sakonaka,P.  Schovanek,K.  Seweryn,C.  Schultz,S.  Shu,F.  Stinzing,M.  Stodulski,M.  Teshima,P.  Travniczek,C.  van Eldik,V.  Vassiliev,Ł  Wiśniewski,A.  Wörnlein,T.  Yoshida},
-title = {Status of the technologies for the production of the Cherenkov Telescope Array (CTA) mirrors},
-journal = {Proc.SPIE},
-volume = {8861},
-number = {},
-pages = {8861 - 8861 - 19},
-year = {2013},
-doi = {10.1117/12.2025476},
-URL = {https://doi.org/10.1117/12.2025476},
-eprint = {}
-}
+_pareschi2013status_arxive = "{https://arxiv.org/abs/1310.1713}"
 
-AND
+_m = {}
 
-https://arxiv.org/abs/1310.1713
-"""
-
-
-mst_dielectric_before = np.array([
+_m['mst_dielectric_before'] = np.array([
     [2.0179153426370204e-7, 0.20889538642774175],
     [2.0426604742418626e-7, 0.18289823384432535],
     [2.0734196374340392e-7, 0.16028901853154776],
@@ -150,7 +158,7 @@ mst_dielectric_before = np.array([
     [7.011490774839957e-7, 0.12139959332441486],
 ])
 
-mst_dielectric_after = np.array([
+_m['mst_dielectric_after'] = np.array([
     [2.553e-07, 5.153e-01],
     [2.558e-07, 5.267e-01],
     [2.562e-07, 5.372e-01],
@@ -349,7 +357,7 @@ mst_dielectric_after = np.array([
     [6.426e-07, 5.158e-01]
 ])
 
-mst_Al_SiO2_HfO2_SiO2_before = np.array([
+_m['mst_Al_SiO2_HfO2_SiO2_before'] = np.array([
     [2.0051982742068466e-7, 0.2416684135524365],
     [2.0167981698298805e-7, 0.2730211055575693],
     [2.0273842434341e-7, 0.3625671814426339],
@@ -434,7 +442,7 @@ mst_Al_SiO2_HfO2_SiO2_before = np.array([
     [6.975398710970172e-7, 0.7987106579154548],
 ])
 
-mst_Al_SiO2_HfO2_SiO2_after = np.array([
+_m['mst_Al_SiO2_HfO2_SiO2_after'] = np.array([
     [2.0051e-7, 0.2416684],
     [2.0167e-7, 0.2730211],
     [2.0273e-7, 0.3625671],
@@ -620,7 +628,7 @@ mst_Al_SiO2_HfO2_SiO2_after = np.array([
     [7.000e-07, 7.965e-01]
 ])
 
-mst_Al_SiO2_before = np.array([
+_m['mst_Al_SiO2_before'] = np.array([
     [2.020509939570607e-7, 0.47827754290023605],
     [2.0492355529658222e-7, 0.5026754158563038],
     [2.1030074916918577e-7, 0.5535062864345561],
@@ -697,7 +705,7 @@ mst_Al_SiO2_before = np.array([
     [6.992100198363608e-7, 0.8858253326831652],
 ])
 
-mst_Al_SiO2_after = np.array([
+_m['mst_Al_SiO2_after'] = np.array([
     [2.020e-07, 4.780e-01],
     [2.121e-07, 5.167e-01],
     [2.140e-07, 5.283e-01],
@@ -833,8 +841,7 @@ mst_Al_SiO2_after = np.array([
     [6.991e-07, 8.615e-01]
 ])
 
-
-astri_SiO2_mixed_multilayer_yellow = np.array([
+_m['astri_SiO2_mixed_multilayer_yellow'] = np.array([
     [2.537413130963693e-7, 0.24217160548429906],
     [2.599602643442879e-7, 0.2226315789473684],
     [2.64808135440307e-7, 0.19255933952528392],
@@ -933,8 +940,7 @@ astri_SiO2_mixed_multilayer_yellow = np.array([
     [8.977594615326683e-7, 0.08342621259029936],
 ])
 
-
-astri_SiO2_TiO2_mulitlayer = np.array([
+_m['astri_SiO2_TiO2_mulitlayer'] = np.array([
     [2.5372149392441824e-7, 0.26919504643962855],
     [2.6751338126588716e-7, 0.26395665634674925],
     [2.7165235615408805e-7, 0.26046439628482976],
@@ -1102,8 +1108,7 @@ astri_SiO2_TiO2_mulitlayer = np.array([
     [8.935800758610431e-7, 0.14201857585139321],
 ])
 
-
-astri_SiO2_mixed_multilayer_orange = np.array([
+_m['astri_SiO2_mixed_multilayer_orange'] = np.array([
     [2.543265884896023e-7, 0.3841486068111455],
     [2.605210706829197e-7, 0.3979721362229103],
     [2.6533923843020693e-7, 0.4084004127966976],
@@ -1293,8 +1298,7 @@ astri_SiO2_mixed_multilayer_orange = np.array([
     [8.908862845004829e-7, 0.05500309597523212],
 ])
 
-
-astri_Al_SiO2 = np.array([
+_m['astri_Al_SiO2'] = np.array([
     [2.5286312050537696e-7, 0.812920536635707],
     [2.6205835237806544e-7, 0.8085552115583076],
     [2.7033295830443036e-7, 0.8061300309597523],
@@ -1377,3 +1381,21 @@ astri_Al_SiO2 = np.array([
     [8.889509957187666e-7, 0.8137693498452012],
     [8.951572169600858e-7, 0.8115866873065016],
 ])
+
+reflectivities = {}
+for key in _m:
+    reflectivities[key] = {
+        "wavelength": {
+            "values": _m[key][:, 0].tolist(),
+            "unit": "m",
+        },
+        "reflectivity": {
+            "values": _m[key][:, 1].tolist(),
+            "unit": "1",
+        },
+        "comment": (
+            "{" + key + "}" +
+            _pareschi2013status_arxive +
+            _pareschi2013status
+        )
+    }

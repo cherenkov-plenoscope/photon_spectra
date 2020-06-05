@@ -20,8 +20,10 @@ cherenkov_histogram_on_ground = np.interp(
 
 cherenkov_la_palma_zd_70deg = np.interp(
     x=wavelength,
-    xp=cherenkov_la_palma.cherenkov_histogram_on_ground_zenith_distance_70deg[:, 0],
-    fp=cherenkov_la_palma.cherenkov_histogram_on_ground_zenith_distance_70deg[:, 1],)
+    xp=cherenkov_la_palma.cherenkov_histogram_on_ground_zenith_distance_70deg[
+        :, 0],
+    fp=cherenkov_la_palma.cherenkov_histogram_on_ground_zenith_distance_70deg[
+        :, 1],)
 
 cherenkov_gamma_below_5gev_5000m_asl = np.interp(
     x=wavelength,

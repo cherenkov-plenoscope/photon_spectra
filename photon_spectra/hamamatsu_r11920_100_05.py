@@ -1,17 +1,24 @@
 import numpy as np
 
-"""
-@article{toyama2013novel,
-  title={Novel photo multiplier tubes for the Cherenkov Telescope array project},
-  author={Toyama, Takeshi and Mirzoyan, Razmik and Dickinson, Hugh and Fruck, Christian and Hose, J{\"u}rgen and Kellermann, Hanna and Kn{\"o}tig, Max and Lorenz, Eckart and Menzel, Uta and Nakajima, Daisuke and others},
-  journal={arXiv preprint arXiv:1307.5463},
-  year={2013}
-}
+_toyama2013novel = "".join([
+    "@article{toyama2013novel,"
+    "title={Novel photo multiplier tubes for the "
+    "Cherenkov Telescope array project},"
+    "author={Toyama, Takeshi and Mirzoyan, Razmik and "
+    "Dickinson, Hugh and Fruck, Christian and Hose, Juergen and "
+    "Kellermann, Hanna and Knoetig, Max and Lorenz, Eckart and "
+    "Menzel, Uta and Nakajima, Daisuke and others},"
+    "journal={arXiv preprint arXiv:1307.5463},"
+    "year={2013}"
+    "}"
+])
 
-Based on a sample of 15 tubes selected by Hamamatsu.
-"""
+_kalekin2018average = "".join([
+    "Average of 382 PMTs in 420 measurements."
+    "Oleg Kalekin, University Erlangen, March 2018."
+])
 
-hamamatsu_r11920_100_05_sample = np.array([
+_hamamatsu_r11920_100_05_sample = np.array([
     # wavelength/m, efficiency/1
     [200e-9, 0.0000],
     [220e-9, 0.0149],
@@ -36,12 +43,7 @@ hamamatsu_r11920_100_05_sample = np.array([
     [701e-9, 0.0001],
 ])
 
-"""
-Average of 382 PMTs in 420 measurements.
-Oleg Kalekin, University Erlangen, March 2018.
-"""
-
-hamamatsu_r11920_100_05 = np.array([
+_hamamatsu_r11920_100_05 = np.array([
     # wavelength/m, efficiency/1
     [200e-9, 0.0000],
     [2.50000e-07, 8.18886e-02],
@@ -137,3 +139,15 @@ hamamatsu_r11920_100_05 = np.array([
     [7.00000e-07, 5.94595e-03],
     [701e-9, 0.0001],
 ])
+
+efficiency = {
+    "wavelength": {
+        "values": _hamamatsu_r11920_100_05[:, 0].tolist(),
+        "unit": "m"
+    },
+    "efficiency": {
+        "values": _hamamatsu_r11920_100_05[:, 1].tolist(),
+        "unit": "1"
+    },
+    "comment": _toyama2013novel+_kalekin2018average
+}

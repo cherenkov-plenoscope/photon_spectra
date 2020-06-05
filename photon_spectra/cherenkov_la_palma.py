@@ -1,38 +1,39 @@
 import numpy as np
 
-"""
-Simulated with corsika75600Linux_QGSII_urqmd
+_corsika2018cherenkov = "".join([
+    "Simulated with corsika75600Linux_QGSII_urqmd\\n"
+    "RUNNR    1\\n"
+    "EVTNR    1\\n"
+    "NSHOW    1\\n"
+    "PRMPAR   1 # gamma\\n"
+    "ESLOPE  -2.0\\n"
+    "ERANGE  3000 3000\\n"
+    "THETAP  {thetap:1.2f} {thetap:1.2f}\\n"
+    "PHIP    0.  360.\\n"
+    "SEED 1 0 0\\n"
+    "SEED 2 0 0\\n"
+    "SEED 3 0 0\\n"
+    "SEED 4 0 0\\n"
+    "OBSLEV  2200.0e2 # Roque de los Muchachos, La Palma\\n"
+    "FIXCHI  0.\\n"
+    "MAGNET 1e-99 1e-99\\n"
+    "ELMFLG  T   T\\n"
+    "MAXPRT  1\\n"
+    "PAROUT  F F\\n"
+    "TELESCOPE  0. 0. 0. 10e2 # instrument radius\\n"
+    "ATMOSPHERE 8 T # MAGIC, Winter\\n"
+    "CWAVLG 250 700\\n"
+    "CSCAT 1 0.0 0.0\\n"
+    "CERQEF F T F # pde, atmo, mirror\\n"
+    "CERSIZ 1\\n"
+    "CERFIL F\\n"
+    "TSTART T\\n"
+    "EXIT\\n"
+])
 
-RUNNR    1
-EVTNR    1
-NSHOW    1
-PRMPAR   1 # gamma
-ESLOPE  -2.0
-ERANGE  3000 3000
-THETAP  0.  0.
-PHIP    0.  360.
-SEED 1 0 0
-SEED 2 0 0
-SEED 3 0 0
-SEED 4 0 0
-OBSLEV  2200.0e2 # Roque de los Muchachos, La Palma
-FIXCHI  0.
-MAGNET 1e-99 1e-99
-ELMFLG  T   T
-MAXPRT  1
-PAROUT  F F
-TELESCOPE  0. 0. 0. 10e2 # instrument radius
-ATMOSPHERE 8 T # MAGIC, Winter
-CWAVLG 250 700
-CSCAT 1 0.0 0.0
-CERQEF F T F # pde, atmo, mirror
-CERSIZ 1
-CERFIL F
-TSTART T
-EXIT
-"""
+_cer = {}
 
-cherenkov_histogram_on_ground = np.array([
+_cer[0] = np.array([
     [2.50e-07, 7.6536e-01],
     [2.51e-07, 1.0000e+00],
     [2.52e-07, 9.9934e-01],
@@ -485,12 +486,7 @@ cherenkov_histogram_on_ground = np.array([
     [6.99e-07, 1.2294e-01]
 ])
 
-"""
-Same shower but zenith distance is 70 deg. The absorbtion is clearly visible:
-THETAP  70.  70.
-"""
-
-cherenkov_histogram_on_ground_zenith_distance_70deg = np.array([
+_cer[70] = np.array([
     [2.50e-07, 6.678e-04],
     [2.51e-07, 0.000e+00],
     [2.52e-07, 0.000e+00],
@@ -943,35 +939,46 @@ cherenkov_histogram_on_ground_zenith_distance_70deg = np.array([
     [6.99e-07, 5.172e-01]
 ])
 
-x_pos_idx = 0
-y_pos_idx = 1
-x_dir_cos_idx = 2
-y_dir_cos_idx = 3
-time_idx = 4
-z_emission_height_idx = 5
-photon_weight_idx = 6
-wavelength_idx = 7
+intensity = {}
+for key in _cer:
+    intensity[key] = {
+        "wavelength": {
+            "values": _cer[key][:, 0].tolist(),
+            "unit": "m"
+        },
+        "intensity": {
+            "values": _cer[key][:, 1].tolist(),
+            "unit": "1"
+        },
+        "comment": (
+            "{zenith_" + str(key) + "deg}" +
+            _corsika2018cherenkov.format(float(key))
+        )
+    }
 
 
-def read_corsika_photons(path):
+def _read_corsika_photons(path):
     corsoka_photons = np.fromfile(path, dtype=np.float32)
     n = corsoka_photons.shape[0]
-    return corsoka_photons.reshape(n//8,8)
+    return corsoka_photons.reshape(n//8, 8)
 
 
-def cherenkov_spectrum_from_corsika_photon_block(
-	path,
-	bins=10,
-	use_weights=True
+def _cherenkov_spectrum_from_corsika_photon_block(
+    path,
+    bins=10,
+    use_weights=True
 ):
-    corsoka_photons = read_corsika_photons(path)
+    photon_weight_idx = 6
+    wavelength_idx = 7
+
+    corsoka_photons = _read_corsika_photons(path)
     wavelength = np.abs(corsoka_photons[:, wavelength_idx])
     wavelength = (
         wavelength +
         np.random.uniform(size=wavelength.shape[0]) -
         0.5*np.ones(wavelength.shape[0]))
 
-    wavelength *= 1e-9 # to meters
+    wavelength *= 1e-9  # to meters
     if use_weights:
         weights = corsoka_photons[:, photon_weight_idx]
         return np.histogram(a=wavelength, bins=bins, weights=weights)

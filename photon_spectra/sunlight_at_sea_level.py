@@ -1,22 +1,20 @@
 import numpy as np
 
-"""
-https://commons.wikimedia.org/wiki/File:Solar_Spectrum.png
-
-This figure shows the solar radiation spectrum for direct light at both
-the top of the Earth's atmosphere and at sea level. The sun produces
-light with a distribution similar to what would be expected from
-a 5525 K (5250 °C) blackbody, which is approximately the sun's surface
-temperature. As light passes through the atmosphere, some is absorbed by
-gases with specific absorption bands. Additional light is redistributed by
-Rayleigh scattering, which is responsible for the atmosphere's blue color.
-
-These curves are based on NREL data for above the atmosphere and at sea level,
-which are standards adopted by the photovoltaics industry to ensure consistent
-test conditions and are similar to the light that could be expected in
-North America. Regions for ultraviolet, visible and
-infrared light are indicated.
-"""
+_wikimedia2019solar = "".join([
+    "https://commons.wikimedia.org/wiki/File:Solar_Spectrum.png"
+    "This figure shows the solar radiation spectrum for direct light at both"
+    "the top of the Earth's atmosphere and at sea level. The sun produces"
+    "light with a distribution similar to what would be expected from"
+    "a 5525 K (5250 °C) blackbody, which is approximately the sun's surface"
+    "temperature. As light passes through the atmosphere, some is absorbed by"
+    "gases with specific absorption bands. Additional light is redistributed "
+    "by Rayleigh scattering, which is responsible for the atmosphere's blue "
+    "color. These curves are based on NREL data for above the atmosphere and "
+    "at sea level, which are standards adopted by the photovoltaics industry "
+    "to ensure consistent test conditions and are similar to the light that "
+    "could be expected in North America. Regions for ultraviolet, visible and"
+    "infrared light are indicated."
+])
 
 _sunlight_differential_flux_at_sea_level = np.array([
     # wavelength/m, differential flux/W m$^{-2} (nm)$^{-1}$
@@ -320,10 +318,16 @@ _sldfasl = _sldfasl[_sort_wvl]
 _mask_negative_flux = _sldfasl[:, 1] < 0
 _sldfasl[_mask_negative_flux, 1] = 0.
 
-_sldfasl[:, 1] = _sldfasl[:, 1]*1e9 # (nm)$^{-1}$ --> m$^{-1}$
+_sldfasl[:, 1] = _sldfasl[:, 1]*1e9  # (nm)$^{-1}$ --> m$^{-1}$
 
-sunlight_differential_flux_at_sea_level = {
-    "spectrum": _sldfasl.copy(),
-    "unit_wafelength": "m",
-    "unit_spectrum": "W\\,m$^{-2}$\\,m$^{-1}$",
+differential_flux = {
+    "wavelength": {
+        "values": _sldfasl[:, 0].tolist(),
+        "unit": "m",
+    },
+    "differential_flux": {
+        "values": _sldfasl[:, 1].tolist(),
+        "unit": "W m^{-2} m^{-1}",
+    },
+    "comment": _wikimedia2019solar
 }
