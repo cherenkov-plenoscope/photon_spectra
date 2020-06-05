@@ -10,8 +10,8 @@ equal = photon_spectra.make_equal_sampling(wavelengths=wavelengths)
 
 c = {
     'dpi': 200,
-    'rows': 720,
-    'cols': 1280,
+    'rows': 800,
+    'cols': 1200,
     'path': '',
     'axes_margins': [.12, .12, .85, .85]
 }
@@ -51,10 +51,9 @@ lcer70, = plt.plot(
     wavelengths,
     equal['cherenkov']['la_palma_2km_asl_zenith_70deg'],
     label='3TeV gamma, Cherenkov La Palma, 2200m asl, Zd: 70deg')
-ax.semilogy()
 ax.set_xlim([200e-9, 700e-9])
 ax.set_xlabel('Wavelength / m')
-ax.set_ylabel('relative / 1')
+ax.set_ylabel('Relative / 1')
 ax.spines['right'].set_visible(False)
 ax.spines['top'].set_visible(False)
 ax.grid(color='k', linestyle='-', linewidth=0.66, alpha=0.1)
@@ -74,7 +73,7 @@ lcer70, = plt.plot(
     label='Hamamatsu, r11920_100_05, CTA LST PMT')
 ax.set_xlim([200e-9, 700e-9])
 ax.set_xlabel('Wavelength / m')
-ax.set_ylabel('photon detection efficieny / 1')
+ax.set_ylabel('Photon detection efficieny / 1')
 ax.spines['right'].set_visible(False)
 ax.spines['top'].set_visible(False)
 ax.grid(color='k', linestyle='-', linewidth=0.66, alpha=0.1)
@@ -93,7 +92,7 @@ for name in equal['transmissivity']:
     legend_handles.append(leg)
 ax.set_xlim([200e-9, 700e-9])
 ax.set_xlabel('Wavelength / m')
-ax.set_ylabel('reflectivity / 1')
+ax.set_ylabel('Transmissivity / 1')
 ax.spines['right'].set_visible(False)
 ax.spines['top'].set_visible(False)
 ax.grid(color='k', linestyle='-', linewidth=0.66, alpha=0.1)
@@ -112,9 +111,29 @@ for mirror_name in equal['reflectivity']:
     legend_handles.append(leg)
 ax.set_xlim([200e-9, 700e-9])
 ax.set_xlabel('Wavelength / m')
-ax.set_ylabel('reflectivity / 1')
+ax.set_ylabel('Reflectivity / 1')
 ax.spines['right'].set_visible(False)
 ax.spines['top'].set_visible(False)
 ax.grid(color='k', linestyle='-', linewidth=0.66, alpha=0.1)
 ax.legend(handles=legend_handles)
 fig.savefig('./readme/cta_mirrors.png')
+
+
+fig = plt.figure(figsize=figsize, dpi=c['dpi'])
+ax = fig.add_axes(c['axes_margins'])
+legend_handles = []
+for name in equal['photon_detection_efficieny']:
+    if 'ccd' in name:
+        leg, = plt.plot(
+            wavelengths,
+            equal['photon_detection_efficieny'][name],
+            label=name)
+        legend_handles.append(leg)
+ax.set_xlim([200e-9, 700e-9])
+ax.set_xlabel('Wavelength / m')
+ax.set_ylabel('Photon detection efficieny / 1')
+ax.spines['right'].set_visible(False)
+ax.spines['top'].set_visible(False)
+ax.grid(color='k', linestyle='-', linewidth=0.66, alpha=0.1)
+ax.legend(handles=legend_handles)
+fig.savefig('./readme/ccd.png')
