@@ -60,7 +60,7 @@ _m["hess_ct5_degraded"][:, 1] *= _degradation_factor
 reflectivities = {}
 for key in _m:
     reflectivities[key] = {
-        "wavelength_vs_value": _m[key],
+        "wavelength_vs_value": _m[key].tolist(),
         "units": ["m", "1"],
         "reference": _cornils2005optical+_gaug2019using
     }

@@ -249,7 +249,7 @@ efficiency = {}
 
 for key in _ccd:
     efficiency[key] = {
-        "wavelength_vs_value": _ccd[key],
+        "wavelength_vs_value": _ccd[key].tolist(),
         "units": ["m", "1"],
         "reference": "{" + key + "}" + _sony2019ccd
     }

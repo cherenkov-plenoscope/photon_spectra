@@ -329,7 +329,7 @@ _flux_per_m2_per_s_per_m = _sldfasl[:, 1]/_photon_energy_J
 _sldfasl[:, 1] = _flux_per_m2_per_s_per_m
 
 differential_flux = {
-    "wavelength_vs_value": _sldfasl,
+    "wavelength_vs_value": _sldfasl.tolist(),
     "units": ["m", "m^{-2} s^{-1} m^{-1}"],
     "reference": _wikimedia2019solar
 }

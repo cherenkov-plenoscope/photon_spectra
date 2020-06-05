@@ -478,7 +478,7 @@ _bsde = _bsde[_sort_wvl]
 _bsde[:, 1] /= np.max(_bsde[:, 1])
 
 emission = {
-    "wavelength_vs_value": _bsde,
+    "wavelength_vs_value": _bsde.tolist(),
     "units": ["m", "arbitrary units"],
     "reference": _wikimedia2019blue
 }

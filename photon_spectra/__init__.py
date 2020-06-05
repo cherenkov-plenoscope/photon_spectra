@@ -12,6 +12,7 @@ from . import cherenkov_la_palma
 from . import sunlight_at_sea_level
 from . import nsb_la_palma_2013_benn
 from . import nsb_la_palma_2002_hofmann
+import numpy as np
 
 _ps = {}
 _ps["reflectivity"] = {}
@@ -46,18 +47,48 @@ _ps["photon_detection_efficieny"]["hamamatsu_r11920_100_05"] = (
     hamamatsu_r11920_100_05.efficiency
 )
 
-_ps["sunlight"] = {}
-_ps["sunlight"]["blue_sky_diffuse"] = blue_sky_diffuse.emission
-_ps["sunlight"]["sunlight_at_sea_level"] = (
+_ps["day_sky"] = {}
+_ps["day_sky"]["blue_sky_diffuse"] = blue_sky_diffuse.emission
+_ps["day_sky"]["sunlight_at_sea_level"] = (
     sunlight_at_sea_level.differential_flux
 )
 
-_ps["night_sky_background"] = {}
-_ps["night_sky_background"]["la_palma_benn_ellison"] = (
+_ps["night_sky"] = {}
+_ps["night_sky"]["la_palma_benn_ellison"] = (
     nsb_la_palma_2013_benn.differential_flux
 )
-_ps["night_sky_background"]["la_palma_preuss"] = (
+_ps["night_sky"]["la_palma_preuss"] = (
     nsb_la_palma_2002_hofmann.differential_flux
 )
 
+_ps["cherenkov"] = {}
+_ps["cherenkov"]["chile_5km_asl"] = cherenkov_chile.intensity
+_ps["cherenkov"]["la_palma_2km_asl_zenith_0deg"] = (
+    cherenkov_la_palma.intensities[0]
+)
+_ps["cherenkov"]["la_palma_2km_asl_zenith_70deg"] = (
+    cherenkov_la_palma.intensities[70]
+)
+
 photon_spectra = _ps
+
+
+def _to_array_interp(wavelength_vs_value, wavelengths):
+    arr = np.array(wavelength_vs_value)
+    below = wavelengths < np.min(arr[:, 0])
+    above = wavelengths > np.max(arr[:, 0])
+    invalid = below + above
+    rec = np.interp(x=wavelengths, xp=arr[:, 0], fp=arr[:, 1])
+    rec[invalid] = np.nan
+    return rec
+
+
+def make_equal_sampling(wavelengths=np.linspace(200e-9, 700e-9, 501)):
+    equal = {}
+    for category in _ps:
+        equal[category] = {}
+        for name in _ps[category]:
+            equal[category][name] = _to_array_interp(
+                wavelength_vs_value=_ps[category][name]['wavelength_vs_value'],
+                wavelengths=wavelengths)
+    return equal

@@ -358,19 +358,21 @@ _suprasil_refractive_index = np.array([
 _suprasil_refractive_index[:, 0] *= 1e-9
 
 refraction = {
-    "wavelength_vs_value": _suprasil_refractive_index,
+    "wavelength_vs_value": _suprasil_refractive_index.tolist(),
     "units": ["m", "1"],
     "reference": _heraeus2018quarz
 }
 
 transmission = {
-    "wavelength_vs_value": _heraeus_silica_glass_suprasil_311_312_313_transmission,
+    "wavelength_vs_value": (
+        _heraeus_silica_glass_suprasil_311_312_313_transmission.tolist()
+    ),
     "units": ["m", "1"],
     "reference": _heraeus2018quarz
 }
 
 fresnell_reflection_losses = {
-    "wavelength_vs_value": _fresnell_reflection_losses,
+    "wavelength_vs_value": _fresnell_reflection_losses.tolist(),
     "units": ["m", "1"],
     "reference": _heraeus2018quarz
 }

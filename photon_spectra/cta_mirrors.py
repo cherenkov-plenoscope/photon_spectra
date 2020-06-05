@@ -1385,7 +1385,7 @@ _m['cta_astri_Al_SiO2'] = np.array([
 reflectivities = {}
 for key in _m:
     reflectivities[key] = {
-        "wavelength_vs_value": _m[key],
+        "wavelength_vs_value": _m[key].tolist(),
         "units": ["m", "1"],
         "reference": (
             "{" + key + "}" +

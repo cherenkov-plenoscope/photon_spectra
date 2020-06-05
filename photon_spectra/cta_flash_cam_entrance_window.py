@@ -273,7 +273,7 @@ _cta_flash_cam_window_transmisson = np.array([
 ])
 
 transmisson = {
-    "wavelength_vs_value": _cta_flash_cam_window_transmisson,
+    "wavelength_vs_value": _cta_flash_cam_window_transmisson.tolist(),
     "units": ["m", "1"],
     "reference": _cta2017flashcam
 }

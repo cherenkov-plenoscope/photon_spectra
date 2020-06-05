@@ -1,86 +1,120 @@
-import equal_sampling as es
+import photon_spectra
+import numpy as np
+
+import matplotlib
+matplotlib.use('Agg')
+import matplotlib.pyplot as plt
+
+wavelengths = np.linspace(240e-9, 700e-9, 501)
+equal = photon_spectra.make_equal_sampling(wavelengths=wavelengths)
+
+c = {
+    'dpi': 200,
+    'rows': 720,
+    'cols': 1280,
+    'path': '',
+    'axes_margins': [.12, .12, .85, .85]
+}
+
+figsize = (c['cols']/c['dpi'], c['rows']/c['dpi'])
+
+fig = plt.figure(figsize=figsize, dpi=c['dpi'])
+ax = fig.add_axes(c['axes_margins'])
+lbenn, = ax.plot(
+    wavelengths,
+    equal['night_sky']['la_palma_benn_ellison'],
+    '-k',
+    label='Benn, and Ellison, 1998')
+lhof, = ax.plot(
+    wavelengths,
+    equal['night_sky']['la_palma_preuss'],
+    '--k',
+    label='Preuss, Hermann, Hofmann, and Kohnle, 2002')
+ax.semilogy()
+ax.set_xlim([200e-9, 700e-9])
+ax.set_xlabel('Wavelength / m')
+ax.set_ylabel('Differential flux / m$^{-2}$ sr$^{-1}$ s$^{-1}$ m$^{-1}$')
+ax.spines['right'].set_visible(False)
+ax.spines['top'].set_visible(False)
+ax.grid(color='k', linestyle='-', linewidth=0.66, alpha=0.1)
+ax.legend(handles=[lbenn, lhof])
+fig.savefig('./readme/nsb.png')
 
 
-plt.figure()
-lbenn, = plt.plot(
-    es.wavelength,
-    es.nsb_diff_la_palma_benn,
-    label='night-sky-background, La Palma, Benn')
-lhof, = plt.plot(
-    es.wavelength,
-    es.nsb_diff_la_palma_2002_hofmann,
-    label='night-sky-background, La Palma, Hofmann')
-plt.semilogy()
-plt.ylabel('differential flux/(m^-2 sr^-1 m^-1)')
-plt.xlabel('wavelength/m')
-plt.legend(handles=[lbenn, lhof])
-plt.savefig('./readme/nsb.png')
-
-plt.figure()
-lsipm, = plt.plot(es.wavelength, es.hamamatsu_s10362_33_050c, label='FACT SiPM')
-lpmt, = plt.plot(es.wavelength, es.hamamatsu_r11920_100_05, label='CTA LST PMT')
-plt.ylabel('photon-detection-efficiency/1')
-plt.xlabel('wavelength/m')
-plt.legend(handles=[lsipm, lpmt])
-plt.savefig('./readme/pde.png')
-
-plt.figure()
+fig = plt.figure(figsize=figsize, dpi=c['dpi'])
+ax = fig.add_axes(c['axes_margins'])
 lcer, = plt.plot(
-    es.wavelength,
-    es.cherenkov_histogram_on_ground,
-	label='3TeV gamma, Cherenkov La Palma, 2200m asl, Zd: 0deg')
+    wavelengths,
+    equal['cherenkov']['la_palma_2km_asl_zenith_0deg'],
+    label='3TeV gamma, Cherenkov La Palma, 2200m asl, Zd: 0deg')
 lcer70, = plt.plot(
-    es.wavelength,
-    es.cherenkov_la_palma_zd_70deg,
-	label='3TeV gamma, Cherenkov La Palma, 2200m asl, Zd: 70deg')
-plt.ylabel('relative/1')
-plt.xlabel('wavelength/m')
-plt.legend(handles=[lcer, lcer70])
-plt.savefig('./readme/cherenkov.png')
-
-plt.figure()
-lfilter, = plt.plot(
-    es.wavelength,
-    es.veritas_nsb_filter_2015,
-    label='VERITAS night-sky-background filter')
-plt.ylabel('transmission/1')
-plt.xlabel('wavelength/m')
-plt.legend(handles=[lfilter])
-plt.savefig('./readme/transmission.png')
-plt.close('all')
+    wavelengths,
+    equal['cherenkov']['la_palma_2km_asl_zenith_70deg'],
+    label='3TeV gamma, Cherenkov La Palma, 2200m asl, Zd: 70deg')
+ax.semilogy()
+ax.set_xlim([200e-9, 700e-9])
+ax.set_xlabel('Wavelength / m')
+ax.set_ylabel('relative / 1')
+ax.spines['right'].set_visible(False)
+ax.spines['top'].set_visible(False)
+ax.grid(color='k', linestyle='-', linewidth=0.66, alpha=0.1)
+ax.legend(handles=[lcer, lcer70])
+fig.savefig('./readme/cherenkov.png')
 
 
+fig = plt.figure(figsize=figsize, dpi=c['dpi'])
+ax = fig.add_axes(c['axes_margins'])
+lcer, = plt.plot(
+    wavelengths,
+    equal['photon_detection_efficieny']['hamamatsu_s10362_33_050c'],
+    label='Hamamatsu, s10362_33_050c, FACT SiPM')
+lcer70, = plt.plot(
+    wavelengths,
+    equal['photon_detection_efficieny']['hamamatsu_r11920_100_05'],
+    label='Hamamatsu, r11920_100_05, CTA LST PMT')
+ax.set_xlim([200e-9, 700e-9])
+ax.set_xlabel('Wavelength / m')
+ax.set_ylabel('photon detection efficieny / 1')
+ax.spines['right'].set_visible(False)
+ax.spines['top'].set_visible(False)
+ax.grid(color='k', linestyle='-', linewidth=0.66, alpha=0.1)
+ax.legend(handles=[lcer, lcer70])
+fig.savefig('./readme/pde.png')
 
-plt.figure(figsize=(16,9))
-l0, = plt.plot(
-    es.wavelength,
-    es.mst_dielectric,
-    label='CTA MST dielectric')
-l1, = plt.plot(
-    es.wavelength,
-    es.mst_Al_SiO2_HfO2_SiO2_before,
-    label='CTA MST Al SiO2 HfO2 before')
-l2, = plt.plot(
-    es.wavelength,
-    es.mst_Al_SiO2_before,
-    label='CTA MST Al SiO2 before')
-l3, = plt.plot(
-    es.wavelength,
-    es.astri_SiO2_mixed_multilayer_yellow,
-    label='CTA ASTRI SiO2 mixed multi. yellow')
-l4, = plt.plot(
-    es.wavelength,
-    es.astri_SiO2_TiO2_mulitlayer,
-    label='CTA ASTRI SiO2 TiO2 multi.')
-l5, = plt.plot(
-    es.wavelength,
-    es.astri_SiO2_mixed_multilayer_orange,
-    label='CTA ASTRI SiO2 mixed multi. orange')
-l6, = plt.plot(
-    es.wavelength,
-    es.astri_Al_SiO2,
-    label='CTA ASTRI Al SiO2')
-plt.ylabel('reflectivity/1')
-plt.xlabel('wavelength/m')
-plt.legend(handles=[l0, l1, l2, l3, l4, l5, l6])
-plt.savefig('./readme/cta_mirrors.png')
+
+fig = plt.figure(figsize=figsize, dpi=c['dpi'])
+ax = fig.add_axes(c['axes_margins'])
+legend_handles = []
+for name in equal['transmissivity']:
+    leg, = plt.plot(
+        wavelengths,
+        equal['transmissivity'][name],
+        label=name)
+    legend_handles.append(leg)
+ax.set_xlim([200e-9, 700e-9])
+ax.set_xlabel('Wavelength / m')
+ax.set_ylabel('reflectivity / 1')
+ax.spines['right'].set_visible(False)
+ax.spines['top'].set_visible(False)
+ax.grid(color='k', linestyle='-', linewidth=0.66, alpha=0.1)
+ax.legend(handles=legend_handles)
+fig.savefig('./readme/transmission.png')
+
+
+fig = plt.figure(figsize=figsize, dpi=c['dpi'])
+ax = fig.add_axes(c['axes_margins'])
+legend_handles = []
+for mirror_name in equal['reflectivity']:
+    leg, = plt.plot(
+        wavelengths,
+        equal['reflectivity'][mirror_name],
+        label=mirror_name)
+    legend_handles.append(leg)
+ax.set_xlim([200e-9, 700e-9])
+ax.set_xlabel('Wavelength / m')
+ax.set_ylabel('reflectivity / 1')
+ax.spines['right'].set_visible(False)
+ax.spines['top'].set_visible(False)
+ax.grid(color='k', linestyle='-', linewidth=0.66, alpha=0.1)
+ax.legend(handles=legend_handles)
+fig.savefig('./readme/cta_mirrors.png')

@@ -939,10 +939,10 @@ _cer[70] = np.array([
     [6.99e-07, 5.172e-01]
 ])
 
-intensity = {}
+intensities = {}
 for key in _cer:
-    intensity[key] = {
-        "wavelength_vs_value": _cer[key],
+    intensities[key] = {
+        "wavelength_vs_value": _cer[key].tolist(),
         "units": ["m", "1"],
         "reference": (
             "{zenith_" + str(key) + "deg}" +

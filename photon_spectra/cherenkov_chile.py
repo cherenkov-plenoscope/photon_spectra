@@ -139,8 +139,8 @@ _cherenkov_gamma_below_5gev_5000m_asl = np.array([
     [7.00000000e-07, 6.65096836e+01]
 ])
 
-efficiency = {
-    "wavelength_vs_value": _cherenkov_gamma_below_5gev_5000m_asl,
+intensity = {
+    "wavelength_vs_value": _cherenkov_gamma_below_5gev_5000m_asl.tolist(),
     "units": ["m", "1"],
     "reference": _corsika2018cherenkov
 }
