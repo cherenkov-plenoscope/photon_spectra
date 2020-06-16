@@ -29,6 +29,7 @@ _anderhub2013design = "".join([
 
 _hamamatsu_s10362_33_050c = np.array([
     # wavelength/m, efficiency/1
+    [2.39e-07, 0.00e+00],  # conservative guess
     [3.00e-07, 0.00e+00],
     [3.19e-07, 1.22e-01],
     [3.24e-07, 2.00e-01],

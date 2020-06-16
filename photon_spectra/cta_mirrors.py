@@ -159,6 +159,26 @@ _m['cta_mst_dielectric_before'] = np.array([
 ])
 
 _m['cta_mst_dielectric_after'] = np.array([
+    [2.0179153426370204e-7, 0.20889538642774175],   # extrapolated from before
+    [2.0426604742418626e-7, 0.18289823384432535],   # extrapolated from before
+    [2.0734196374340392e-7, 0.16028901853154776],   # extrapolated from before
+    [2.092111365722661e-7, 0.13316386591554774],    # extrapolated from before
+    [2.1229492723726095e-7, 0.10603477612665901],   # extrapolated from before
+    [2.1477140898418948e-7, 0.07890765492421459],   # extrapolated from before
+    [2.2027852956211676e-7, 0.055160596646631976],  # extrapolated from before
+    [2.2632799570544853e-7, 0.06870053421052269],   # extrapolated from before
+    [2.293291057397828e-7, 0.08903012642080166],    # extrapolated from before
+    [2.305082890199181e-7, 0.10936562439041342],    # extrapolated from before
+    [2.3287846709885444e-7, 0.1432568086154702],    # extrapolated from before
+    [2.3586185985519005e-7, 0.17375611839699923],   # extrapolated from before
+    [2.3790106933817859e-7, 0.22332660150428885],   # extrapolated from before
+    [2.405697343367318e-7, 0.2601829690610715],     # extrapolated from before
+    [2.4170462442187036e-7, 0.3059427609588087],    # extrapolated from before
+    [2.452657972996078e-7, 0.35338963143931046],    # extrapolated from before
+    [2.4697551462648175e-7, 0.4177919369645622],    # extrapolated from before
+    [2.4873247802801886e-7, 0.4550749956331466],    # extrapolated from before
+    [2.510908445882894e-7, 0.4957459915723702],     # extrapolated from before
+
     [2.553e-07, 5.153e-01],
     [2.558e-07, 5.267e-01],
     [2.562e-07, 5.372e-01],
@@ -354,7 +374,33 @@ _m['cta_mst_dielectric_after'] = np.array([
     [6.411e-07, 5.300e-01],
     [6.420e-07, 5.197e-01],
     [6.424e-07, 5.106e-01],
-    [6.426e-07, 5.158e-01]
+    [6.426e-07, 5.158e-01],
+
+    [6.449695575365822e-7, 0.29785580784562704],    # extrapolated from before
+    [6.450049920925795e-7, 0.2775163727031267],     # extrapolated from before
+    [6.450374737689105e-7, 0.25887189048916803],    # extrapolated from before
+    [6.474991911175068e-7, 0.24021953392943207],    # extrapolated from before
+    [6.475346256735041e-7, 0.2198800987869317],     # extrapolated from before
+    [6.475700602295016e-7, 0.19954066364443135],    # extrapolated from before
+    [6.482246152222312e-7, 0.17241944820131982],    # extrapolated from before
+    [6.500701650137618e-7, 0.1588539190136533],     # extrapolated from before
+    [6.535301525482623e-7, 0.1249438363587313],     # extrapolated from before
+    [6.58628594580353e-7, 0.12662225316114084],     # extrapolated from before
+    [6.598107307401547e-7, 0.14526279820221089],    # extrapolated from before
+    [6.633468041407273e-7, 0.20711676857531713],    # extrapolated from before
+    [6.645215581013627e-7, 0.22999469593774147],    # extrapolated from before
+    [6.668799246616335e-7, 0.270665691876965],      # extrapolated from before
+    [6.714660748813693e-7, 0.310764485356379],      # extrapolated from before
+    [6.752936631245686e-7, 0.3214867195229958],     # extrapolated from before
+    [6.795979773850292e-7, 0.29096378670413514],    # extrapolated from before
+    [6.820611711734587e-7, 0.27146395368012843],    # extrapolated from before
+    [6.83314176445255e-7, 0.24942562843619775],     # extrapolated from before
+    [6.857832759930174e-7, 0.22653588955510762],    # extrapolated from before
+    [6.888552551393465e-7, 0.20618661148038575],    # extrapolated from before
+    [6.895216216507418e-7, 0.17228558432310748],    # extrapolated from before
+    [6.919951505180039e-7, 0.14685341604920477],    # extrapolated from before
+    [6.968979150575313e-7, 0.12141337342952496],    # extrapolated from before
+    [7.011490774839957e-7, 0.12139959332441486],    # extrapolated from before
 ])
 
 _m['cta_mst_Al_SiO2_HfO2_SiO2_before'] = np.array([
@@ -439,7 +485,7 @@ _m['cta_mst_Al_SiO2_HfO2_SiO2_before'] = np.array([
     [6.762474432568316e-7, 0.8197969747549224],
     [6.835479460855156e-7, 0.8124285556939101],
     [6.908484489141995e-7, 0.8050601366328978],
-    [6.975398710970172e-7, 0.7987106579154548],
+    [7.01e-7, 0.7987106579154548],  # extrapolated guess
 ])
 
 _m['cta_mst_Al_SiO2_HfO2_SiO2_after'] = np.array([
@@ -625,7 +671,7 @@ _m['cta_mst_Al_SiO2_HfO2_SiO2_after'] = np.array([
     [6.950e-07, 8.003e-01],
     [6.970e-07, 7.984e-01],
     [6.985e-07, 7.964e-01],
-    [7.000e-07, 7.965e-01]
+    [7.010e-07, 7.965e-01],
 ])
 
 _m['cta_mst_Al_SiO2_before'] = np.array([
@@ -703,6 +749,7 @@ _m['cta_mst_Al_SiO2_before'] = np.array([
     [6.870549828360348e-7, 0.8909495631976764],
     [6.943426898528307e-7, 0.8909259401603448],
     [6.992100198363608e-7, 0.8858253326831652],
+    [7.01e-7, 0.88],  # extrapolated guess
 ])
 
 _m['cta_mst_Al_SiO2_after'] = np.array([
@@ -838,10 +885,11 @@ _m['cta_mst_Al_SiO2_after'] = np.array([
     [6.896e-07, 8.628e-01],
     [6.913e-07, 8.626e-01],
     [6.974e-07, 8.615e-01],
-    [6.991e-07, 8.615e-01]
+    [7.010e-07, 8.615e-01],
 ])
 
 _m['cta_astri_SiO2_mixed_multilayer_yellow'] = np.array([
+    [2.39e-7, 0.0],     # extrapolated conservative guess
     [2.537413130963693e-7, 0.24217160548429906],
     [2.599602643442879e-7, 0.2226315789473684],
     [2.64808135440307e-7, 0.19255933952528392],
@@ -941,6 +989,7 @@ _m['cta_astri_SiO2_mixed_multilayer_yellow'] = np.array([
 ])
 
 _m['cta_astri_SiO2_TiO2_mulitlayer'] = np.array([
+    [2.39e-7, 0.0],     # extrapolated conservative guess
     [2.5372149392441824e-7, 0.26919504643962855],
     [2.6751338126588716e-7, 0.26395665634674925],
     [2.7165235615408805e-7, 0.26046439628482976],
@@ -1109,6 +1158,7 @@ _m['cta_astri_SiO2_TiO2_mulitlayer'] = np.array([
 ])
 
 _m['cta_astri_SiO2_mixed_multilayer_orange'] = np.array([
+    [2.39e-7, 0.0],     # extrapolated conservative guess
     [2.543265884896023e-7, 0.3841486068111455],
     [2.605210706829197e-7, 0.3979721362229103],
     [2.6533923843020693e-7, 0.4084004127966976],
@@ -1299,6 +1349,7 @@ _m['cta_astri_SiO2_mixed_multilayer_orange'] = np.array([
 ])
 
 _m['cta_astri_Al_SiO2'] = np.array([
+    [2.39e-7, 0.0],     # extrapolated conservative guess
     [2.5286312050537696e-7, 0.812920536635707],
     [2.6205835237806544e-7, 0.8085552115583076],
     [2.7033295830443036e-7, 0.8061300309597523],

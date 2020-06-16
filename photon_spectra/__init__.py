@@ -83,7 +83,7 @@ def _to_array_interp(wavelength_vs_value, wavelengths):
     return rec
 
 
-def make_equal_sampling(wavelengths=np.linspace(200e-9, 700e-9, 501)):
+def make_equal_sampling(wavelengths=np.linspace(200e-9, 701e-9, 502)):
     equal = {}
     for category in _ps:
         equal[category] = {}
