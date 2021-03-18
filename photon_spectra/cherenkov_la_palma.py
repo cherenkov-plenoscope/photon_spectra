@@ -962,6 +962,8 @@ def _cherenkov_spectrum_from_corsika_photon_block(
     bins=10,
     use_weights=True
 ):
+    prng = np.random.default_rng()
+
     photon_weight_idx = 6
     wavelength_idx = 7
 
@@ -969,7 +971,7 @@ def _cherenkov_spectrum_from_corsika_photon_block(
     wavelength = np.abs(corsoka_photons[:, wavelength_idx])
     wavelength = (
         wavelength +
-        np.random.uniform(size=wavelength.shape[0]) -
+        prng.uniform(size=wavelength.shape[0]) -
         0.5*np.ones(wavelength.shape[0]))
 
     wavelength *= 1e-9  # to meters
