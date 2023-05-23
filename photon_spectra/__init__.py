@@ -23,52 +23,55 @@ for key in hess_ct5_mirror.reflectivities:
 
 
 _ps["transmissivity"] = {}
-_ps["transmissivity"]["cta_mst_flash_cam_entrance_window"] = (
-    cta_flash_cam_entrance_window.transmisson)
-_ps["transmissivity"]["silica_glass_suprasil_311_312_313"] = (
-    silica_glass_suprasil_311_312_313.transmission)
-_ps["transmissivity"]["veritas_nsb_filter_2015"] = (
-    veritas_nsb_filter_2015.transmission
-)
+_ps["transmissivity"][
+    "cta_mst_flash_cam_entrance_window"
+] = cta_flash_cam_entrance_window.transmisson
+_ps["transmissivity"][
+    "silica_glass_suprasil_311_312_313"
+] = silica_glass_suprasil_311_312_313.transmission
+_ps["transmissivity"][
+    "veritas_nsb_filter_2015"
+] = veritas_nsb_filter_2015.transmission
 
-_ps['refractivity'] = {}
-_ps["refractivity"]["silica_glass_suprasil_311_312_313"] = (
-    silica_glass_suprasil_311_312_313.refraction)
+_ps["refractivity"] = {}
+_ps["refractivity"][
+    "silica_glass_suprasil_311_312_313"
+] = silica_glass_suprasil_311_312_313.refraction
 
 
 _ps["photon_detection_efficieny"] = {}
 for key in ccd_rgb.efficiency:
     _ps["photon_detection_efficieny"][key] = ccd_rgb.efficiency[key]
 
-_ps["photon_detection_efficieny"]["hamamatsu_s10362_33_050c"] = (
-    hamamatsu_s10362_33_050c.efficiency
-)
-_ps["photon_detection_efficieny"]["hamamatsu_r11920_100_05"] = (
-    hamamatsu_r11920_100_05.efficiency
-)
+_ps["photon_detection_efficieny"][
+    "hamamatsu_s10362_33_050c"
+] = hamamatsu_s10362_33_050c.efficiency
+_ps["photon_detection_efficieny"][
+    "hamamatsu_r11920_100_05"
+] = hamamatsu_r11920_100_05.efficiency
 
 _ps["day_sky"] = {}
 _ps["day_sky"]["blue_sky_diffuse"] = blue_sky_diffuse.emission
-_ps["day_sky"]["sunlight_at_sea_level"] = (
-    sunlight_at_sea_level.differential_flux
-)
+_ps["day_sky"][
+    "sunlight_at_sea_level"
+] = sunlight_at_sea_level.differential_flux
 
 _ps["night_sky"] = {}
-_ps["night_sky"]["la_palma_benn_ellison"] = (
-    nsb_la_palma_2013_benn.differential_flux
-)
-_ps["night_sky"]["la_palma_preuss"] = (
-    nsb_la_palma_2002_hofmann.differential_flux
-)
+_ps["night_sky"][
+    "la_palma_benn_ellison"
+] = nsb_la_palma_2013_benn.differential_flux
+_ps["night_sky"][
+    "la_palma_preuss"
+] = nsb_la_palma_2002_hofmann.differential_flux
 
 _ps["cherenkov"] = {}
 _ps["cherenkov"]["chile_5km_asl"] = cherenkov_chile.intensity
-_ps["cherenkov"]["la_palma_2km_asl_zenith_0deg"] = (
-    cherenkov_la_palma.intensities[0]
-)
-_ps["cherenkov"]["la_palma_2km_asl_zenith_70deg"] = (
-    cherenkov_la_palma.intensities[70]
-)
+_ps["cherenkov"][
+    "la_palma_2km_asl_zenith_0deg"
+] = cherenkov_la_palma.intensities[0]
+_ps["cherenkov"][
+    "la_palma_2km_asl_zenith_70deg"
+] = cherenkov_la_palma.intensities[70]
 
 photon_spectra = _ps
 
@@ -89,6 +92,7 @@ def make_equal_sampling(wavelengths=np.linspace(200e-9, 701e-9, 502)):
         equal[category] = {}
         for name in _ps[category]:
             equal[category][name] = _to_array_interp(
-                wavelength_vs_value=_ps[category][name]['wavelength_vs_value'],
-                wavelengths=wavelengths)
+                wavelength_vs_value=_ps[category][name]["wavelength_vs_value"],
+                wavelengths=wavelengths,
+            )
     return equal
