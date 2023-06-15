@@ -6,7 +6,7 @@ with open("README.md", "r") as f:
 
 setuptools.setup(
     name="photon_spectra",
-    version="0.0.1",
+    version="0.1.0",
     description="A collection of photon-spectra related to Cherenkov-astronomy.",
     long_description=long_description,
     url="https://github.com/cherenkov-plenoscope",
