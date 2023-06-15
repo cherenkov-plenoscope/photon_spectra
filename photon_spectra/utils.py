@@ -1,18 +1,22 @@
-from . import hess_ct5_mirror
-from . import hamamatsu_s10362_33_050c
-from . import hamamatsu_r11920_100_05
-from . import veritas_nsb_filter_2015
-from . import silica_glass_suprasil_311_312_313
-from . import cta_flash_cam_entrance_window
-from . import cta_mirrors
-from . import ccd_rgb
-from . import blue_sky_diffuse
-from . import cherenkov_chile
-from . import cherenkov_la_palma
-from . import sunlight_at_sea_level
-from . import nsb_la_palma_2013_benn
-from . import nsb_la_palma_2002_hofmann
-from . import utils
+import numpy as np
+
+
+def make_values_for_common_wavelength(wavelength, value, common_wavelength):
+    below = common_wavelength < np.min(wavelength)
+    above = common_wavelength > np.max(wavelength)
+    invalid = below + above
+    rec = np.interp(x=common_wavelength, xp=wavelength, fp=value)
+    rec[invalid] = np.nan
+    return rec
+
+
+def is_strictly_monotonic_increasing(x):
+    assert len(x) >= 2
+    for i in range(len(x) - 1):
+        if x[i + 1] <= x[i]:
+            return False
+    return True
+
 
 """
 _ps = {}
@@ -75,26 +79,4 @@ _ps["cherenkov"][
 ] = cherenkov_la_palma.intensities[70]
 
 photon_spectra = _ps
-
-
-def _to_array_interp(wavelength_vs_value, wavelengths):
-    arr = np.array(wavelength_vs_value)
-    below = wavelengths < np.min(arr[:, 0])
-    above = wavelengths > np.max(arr[:, 0])
-    invalid = below + above
-    rec = np.interp(x=wavelengths, xp=arr[:, 0], fp=arr[:, 1])
-    rec[invalid] = np.nan
-    return rec
-
-
-def make_equal_sampling(wavelengths=np.linspace(200e-9, 701e-9, 502)):
-    equal = {}
-    for category in _ps:
-        equal[category] = {}
-        for name in _ps[category]:
-            equal[category][name] = _to_array_interp(
-                wavelength_vs_value=_ps[category][name]["wavelength_vs_value"],
-                wavelengths=wavelengths,
-            )
-    return equal
 """
