@@ -1,15 +1,24 @@
-import setuptools
 import os
+import setuptools
 
-with open("README.md", "r") as f:
+with open("README.rst", "r", encoding="utf-8") as f:
     long_description = f.read()
 
+
+with open(os.path.join("photon_spectra", "version.py")) as f:
+    txt = f.read()
+    last_line = txt.splitlines()[-1]
+    version_string = last_line.split()[-1]
+    version = version_string.strip("\"'")
+
+
 setuptools.setup(
-    name="photon_spectra",
-    version="0.1.0",
+    name="photon_spectra_cherenkov-plenoscope-project",
+    version=version,
     description="A collection of photon-spectra related to Cherenkov-astronomy.",
     long_description=long_description,
-    url="https://github.com/cherenkov-plenoscope",
+    long_description_content_type="text/x-rst",
+    url="https://github.com/cherenkov-plenoscope/photon_spectra",
     author="Sebastian Achim Mueller",
     author_email="sebastian-achim.mueller@mpi-hd.mpg.de",
     packages=["photon_spectra"],

@@ -1,3 +1,4 @@
+from .version import __version__
 from . import hess_ct5_mirror
 from . import hamamatsu_s10362_33_050c
 from . import hamamatsu_r11920_100_05
