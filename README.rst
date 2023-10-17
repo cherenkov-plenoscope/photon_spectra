@@ -1,4 +1,7 @@
-# Photon-spectra
+##############
+Photon-spectra
+##############
+
 A collection of emission-, transmission- and absorbtion-spectra in atmospheric-Cherenkov-astronomy
 
 We collect examples of photon-spectra of the emission of cherenkov-photons from air-showers.
