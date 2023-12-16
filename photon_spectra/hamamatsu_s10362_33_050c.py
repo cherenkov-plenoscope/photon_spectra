@@ -83,4 +83,5 @@ def init():
         "value": _hamamatsu_s10362_33_050c[:, 1],
         "units": ["m", "1"],
         "reference": _hamamatsu2009mppc + _anderhub2013design,
+        "key": "hamamatsu_s10362_33_050c",
     }

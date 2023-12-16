@@ -105,4 +105,5 @@ def init():
         "value": _veritas_nsb_filter_2015[:, 1],
         "units": ["m", "1"],
         "reference": _archambault2017gamma,
+        "key": "veritas_nsb_filter_2015",
     }

@@ -52,10 +52,17 @@ def init():
         ]
     )
 
+    _sample_220nm = _hamamatsu_r11920_100_05_sample[1]
+    assert utils.is_close(_sample_220nm[0], 220e-9)
+    _sample_240nm = _hamamatsu_r11920_100_05_sample[2]
+    assert utils.is_close(_sample_240nm[0], 240e-9)
+
     _hamamatsu_r11920_100_05 = np.array(
         [
             # wavelength/m, efficiency/1
             [200e-9, 0.0000],
+            _sample_220nm,
+            _sample_240nm,
             [2.50000e-07, 8.18886e-02],
             [2.55000e-07, 9.39379e-02],
             [2.60000e-07, 1.08774e-01],
@@ -160,4 +167,5 @@ def init():
         "value": _hamamatsu_r11920_100_05[:, 1],
         "units": ["m", "1"],
         "reference": _toyama2013novel + _kalekin2018average,
+        "key": "hamamatsu_r11920_100_05",
     }

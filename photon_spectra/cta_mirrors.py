@@ -1592,7 +1592,6 @@ def init(key):
         "wavelength": _m[key][:, 0],
         "value": _m[key][:, 1],
         "units": ["m", "1"],
-        "reference": (
-            "{" + key + "}" + _pareschi2013status_arxive + _pareschi2013status
-        ),
+        "reference": _pareschi2013status_arxive + _pareschi2013status,
+        "key": "cta_mirrors_{:s}".format(key),
     }

@@ -258,4 +258,5 @@ def init(key="blue"):
         "value": _ccd[key][:, 1],
         "units": ["m", "1"],
         "reference": "{" + key + "}" + _sony2019ccd,
+        "key": "ccd_rgb",
     }

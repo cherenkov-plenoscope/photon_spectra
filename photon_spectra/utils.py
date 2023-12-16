@@ -16,3 +16,7 @@ def is_strictly_monotonic_increasing(x):
         if x[i + 1] <= x[i]:
             return False
     return True
+
+
+def is_close(a, b, eps=1e-9):
+    return abs(a - b) < eps

@@ -288,4 +288,5 @@ def init():
         "value": _cta_flash_cam_window_transmisson[:, 1],
         "units": ["m", "1"],
         "reference": _cta2017flashcam,
+        "key": "cta_flash_cam_entrance_window",
     }

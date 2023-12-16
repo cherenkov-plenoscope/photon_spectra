@@ -40,4 +40,5 @@ def init():
         "value": _la_palma_2002_hofmann[:, 1],
         "units": ["m", "m^{-2} sr^{-1} s^{-1} m^{-1}"],
         "reference": _preuss2002study,
+        "key": "nsb_la_palma_2002_hofmann",
     }

@@ -91,4 +91,5 @@ def init():
         "value": _la_palma_2013_benn[:, 1],
         "units": ["m", "m^{-2} sr^{-1} s^{-1} m^{-1}"],
         "reference": _gaug2013night,
+        "key": "nsb_la_palma_2013_benn",
     }

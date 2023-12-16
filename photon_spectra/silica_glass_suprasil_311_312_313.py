@@ -365,6 +365,7 @@ def init(key="refraction"):
     )
 
     _suprasil_refractive_index[:, 0] *= 1e-9
+    _key = "silica_glass_suprasil_311_312_313_{:s}".format(key)
 
     if key == "refraction":
         assert utils.is_strictly_monotonic_increasing(
@@ -375,6 +376,7 @@ def init(key="refraction"):
             "value": _suprasil_refractive_index[:, 1],
             "units": ["m", "1"],
             "reference": _heraeus2018quarz,
+            "key": _key,
         }
 
     elif key == "transmission":
@@ -390,6 +392,7 @@ def init(key="refraction"):
             ],
             "units": ["m", "1"],
             "reference": _heraeus2018quarz,
+            "key": _key,
         }
 
     elif key == "fresnell_reflection_losses":
@@ -401,6 +404,7 @@ def init(key="refraction"):
             "value": _fresnell_reflection_losses[:, 1],
             "units": ["m", "1"],
             "reference": _heraeus2018quarz,
+            "key": _key,
         }
     else:
         raise KeyError()

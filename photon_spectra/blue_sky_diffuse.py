@@ -491,4 +491,5 @@ def init():
         "value": _bsde[:, 1],
         "units": ["m", "arbitrary units"],
         "reference": _wikimedia2019blue,
+        "key": "blue_sky_diffuse",
     }

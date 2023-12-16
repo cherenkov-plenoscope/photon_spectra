@@ -962,6 +962,7 @@ def init(zenith_distance_deg=0):
             + "deg}"
             + _corsika2018cherenkov.format(thetap=float(key))
         ),
+        "key": "cherenkov_la_palma",
     }
 
 

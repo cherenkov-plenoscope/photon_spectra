@@ -342,4 +342,5 @@ def init():
         "value": _sldfasl[:, 1],
         "units": ["m", "m^{-2} s^{-1} m^{-1}"],
         "reference": _wikimedia2019solar,
+        "key": "sunlight_at_sea_level",
     }

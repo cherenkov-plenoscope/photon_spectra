@@ -74,4 +74,5 @@ def init(key="degraded"):
         "value": _m[key][:, 1],
         "units": ["m", "1"],
         "reference": _cornils2005optical + _gaug2019using,
+        "key": "hess_ct5_mirror_{:s}".format(key),
     }

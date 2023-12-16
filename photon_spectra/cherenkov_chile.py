@@ -155,4 +155,5 @@ def init():
         "value": _cherenkov_gamma_below_5gev_5000m_asl[:, 1],
         "units": ["m", "1"],
         "reference": _corsika2018cherenkov,
+        "key": "cherenkov_chile",
     }
